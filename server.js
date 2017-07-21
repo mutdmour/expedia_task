@@ -29,8 +29,9 @@ app.get('/sup',function(req,res) {
     var query = url.parse(req.url,true).query;
     _get("getOffers", query, function(err, res){
     	if (!err){
-    		_res.write(res)
-    		_res.end()
+    		// _res.write("yo")
+    		_res.json({data:res['offers']['Hotel']})
+    		// _res.end()
     	} else {
     		console.log("err",err)
     	}
@@ -50,6 +51,7 @@ const defaultOptions = {
 	productType:"Hotel"
 }
 
+// https://github.com/Sdedelbrock/node-expedia-api/blob/master/lib/expedia.js
 function endpoint(method, params){
 	params = _.extend(defaultOptions, params);
     return baseUrl + method + "?" + querystring.stringify(params);
@@ -70,12 +72,11 @@ function _get(method, params, cb){
     });
 }
 
-// https://github.com/Sdedelbrock/node-expedia-api/blob/master/lib/expedia.js
 function _handleResponse(response, cb){
     var result;
     try{
-        // result = JSON.parse(response);
-        result = response;
+        result = JSON.parse(response);
+        // result = response;
     }
     catch (error){
         cb({error:"Error trying to parse response", details:{error:error, response:response}});
