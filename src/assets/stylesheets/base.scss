@@ -1,4 +1,41 @@
-h1 {
-  font-family: helvetica;
-  font-weight: 200;
+.offer_row {
+	padding: 10px;
+}
+
+.side_bar {
+	left:15px;
+	padding-top:10px;
+}
+
+.offer_price {
+	font-weight:bold;
+	text-align:center;
+}
+
+.offer_row {
+	padding-top:10px;
+}
+
+.pointer {
+	cursor:pointer;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #adadad; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    margin-top:100px;
+    margin-left:50px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hotel_image {
+    width:10%;
 }

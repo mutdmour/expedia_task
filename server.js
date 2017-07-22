@@ -11,27 +11,17 @@ const PORT = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', function(req, res) {
-	// console.log("yo")
- //    request.get("https://offersvc.expedia.com/offers/v2/getOffers?scenario=deal-finder&page=foo&uid=foo&productType=Hotel", function(err, res, body) { 
- //    	console.log(body) 
- //    })
     res.sendFile(__dirname + '/../dist/index.html');
 });
 
 app.get('/sup',function(req,res) {
 	_res = res;
-    // request.get("https://offersvc.expedia.com/offers/v2/getOffers?scenario=deal-finder&page=foo&uid=foo&productType=Hotel", function(err, res, body) { 
-    // 	// console.log(body) 
-    // 	// result = JSON.parse(body);
-    // 	_res.write(body);
-    // 	_res.end()
-    // })
     var query = url.parse(req.url,true).query;
     _get("getOffers", query, function(err, res){
     	if (!err){
-    		// _res.write("yo")
-    		_res.json({data:res['offers']['Hotel']})
-    		// _res.end()
+            if (!_res.finished){
+    		  _res.json({data:res['offers']})
+            }
     	} else {
     		console.log("err",err)
     	}
@@ -51,7 +41,6 @@ const defaultOptions = {
 	productType:"Hotel"
 }
 
-// https://github.com/Sdedelbrock/node-expedia-api/blob/master/lib/expedia.js
 function endpoint(method, params){
 	params = _.extend(defaultOptions, params);
     return baseUrl + method + "?" + querystring.stringify(params);
@@ -59,6 +48,7 @@ function endpoint(method, params){
 
 function _get(method, params, cb){
     var url = endpoint(method, params);
+    console.log(url)
     request.get(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             _handleResponse(body, cb);
