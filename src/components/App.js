@@ -31,7 +31,7 @@ export default class App extends React.Component {
     getData(scope){
         this.setState({loading:true})
         var params = querystring.stringify(scope.state.params);
-        $.ajax({ url: 'http://127.0.0.1:8080/getOffers?'+params, method: 'GET', dataType: 'json' })
+        $.ajax({ url: 'http://127.0.0.1:8080/api/getOffers?'+params, method: 'GET', dataType: 'json' })
             .done((data) => {
                 data = data['data']? data['data'][scope.state.params.productType]: [];
                 scope.setState({ 
