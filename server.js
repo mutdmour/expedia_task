@@ -4,11 +4,33 @@ const request = require('request');
 const url = require('url');
 const _ = require('underscore');
 const querystring = require('querystring');
+const session = require('express-session');
+const lusca = require('lusca');
+const dotenv = require('dotenv');
+
+dotenv.load({ path: '.env.prod' });
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, 'dist')));
+
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: process.env.SESSION_SECRET,
+}));
+
+// lusca CSRF middleware, for xframe and xssProtection protection
+app.use((req, res, next) => {
+  if (req.path === '/api/upload') {
+    next();
+  } else {
+    lusca.csrf()(req, res, next);
+  }
+});
+app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.xssProtection(true));
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/../dist/index.html');
