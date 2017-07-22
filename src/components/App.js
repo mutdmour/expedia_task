@@ -31,7 +31,7 @@ export default class App extends React.Component {
     getData(scope){
         this.setState({loading:true})
         var params = querystring.stringify(scope.state.params);
-        $.ajax({ url: 'http://127.0.0.1:8080/sup?'+params, method: 'GET', dataType: 'json' })
+        $.ajax({ url: 'http://127.0.0.1:8080/getOffers?'+params, method: 'GET', dataType: 'json' })
             .done((data) => {
                 data = data['data']? data['data'][scope.state.params.productType]: [];
                 scope.setState({ 
@@ -48,8 +48,7 @@ export default class App extends React.Component {
                     <h3>Deal finder</h3>
                     <Header params={this.state.params} 
                             updateParams={this.updateParams} 
-                            submit={()=>this.submitForm()}
-                            clearParams={()=>this.clearParams()}
+                           clearParams={()=>this.clearParams()}
                             /> 
                 </div>
                 <div className="col-xs-10 col-md-10">
@@ -76,7 +75,7 @@ export default class App extends React.Component {
                 </table>
             )
         }
-        return <div>No offers were found</div>;
+        return <h5 className="offer_row">No offers were found</h5>;
     }
 
     updateParams(event, key, getData, val=null){
@@ -87,7 +86,15 @@ export default class App extends React.Component {
         params[key] = val;
         this.setState({params: params})
         if (getData){
-            this.getData(this);
+            if (key == "productType"){
+                if (val == "Flight"){
+                    this.clearParams("Hotel");
+                } else {
+                    this.clearParams("Flight");
+                }
+            } else {
+                this.getData(this);
+            }
         }
     }
 
@@ -101,13 +108,8 @@ export default class App extends React.Component {
         } else if (type === "Hotel"){
             params.minGuestRating = null;
             params.minStarRating = null;
-            
         }
         this.setState({params:params});
-        this.getData(this);
-    }
-
-    submitForm(){
         this.getData(this);
     }
 }
@@ -129,20 +131,16 @@ class Header extends React.Component {
     render() {
         var params = this.props.params;
 
-        var destination_input = (<div className="input-group">
-                  <label for="destination">Destination:</label>
-                  <input type="text" 
-                        id="destination"
-                        className="form-control" 
-                        placeholder="Amman" 
-                        value={params.destinationName} 
-                        onKeyPress={(e) => this.handleKeyPress(e, "destinationName")}
-                        onChange={(e) => this.props.updateParams(e,"destinationName")}
-                        aria-describedby="basic-addon1"></input>
-                </div>)
-
         var isActive = function(opt){
             return opt === params.productType? "active": "";
+        }
+
+        var starInput = <div className="hidden"></div>
+        if (params.productType == "Hotel"){
+            starInput =  ( <div>
+                {this.renderStarsInput("minStarRating", "Min Star Rating", this.props.updateParams, params.minStarRating)}
+                {this.renderStarsInput("minGuestRating", "Min Guest Rating", this.props.updateParams, params.minGuestRating)}
+                </div>)
         }
 
         return (
@@ -160,7 +158,17 @@ class Header extends React.Component {
                             >Flights</button>                
                 </div>
 
-                {destination_input}
+                <div className="input-group">
+                  <label for="destination">Destination:</label>
+                  <input type="text" 
+                        id="destination"
+                        className="form-control" 
+                        placeholder="Amman" 
+                        value={params.destinationName} 
+                        onKeyPress={(e) => this.handleKeyPress(e, "destinationName")}
+                        onChange={(e) => this.props.updateParams(e,"destinationName")}
+                        aria-describedby="basic-addon1"></input>
+                </div>
 
                 <div className="input-group">
                   <label for="lengthofstay">Length Of Stay:</label>
@@ -175,8 +183,7 @@ class Header extends React.Component {
                         aria-describedby="basic-addon1"></input>
                 </div>
 
-                {this.renderStarsInput("minStarRating", "Min Star Rating", this.props.updateParams, params.minStarRating)}
-                {this.renderStarsInput("minGuestRating", "Min Guest Rating", this.props.updateParams, params.minGuestRating)}
+                {starInput}
 
                 <div className="input-group">
                     <a href="#" onClick={()=>this.props.clearParams()}>Clear all filters</a>
@@ -271,7 +278,7 @@ class Offer extends React.Component {
                             <h5>{hotelPricingInfo.currency} PER NIGHT</h5>
                         </div>
                         <div className="col-xs-2 col-md-2 hotel_image">
-                            <a href={decodeURI(hotelUrls.hotelInfositeUrl)} class="pointer"><img src={hotelInfo.hotelImageUrl}></img></a>
+                            <a href={decodeURI(hotelUrls.hotelInfositeUrl)} className="pointer"><img src={hotelInfo.hotelImageUrl}></img></a>
                         </div>
                         <div className="col-xs-10 col-md-8">
                             <div className="row">
