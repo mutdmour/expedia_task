@@ -44,7 +44,6 @@ const defaultOptions = {
 	scenario:"deal-finder",
 	page:"foo",
 	uid:"foo",
-    productType:"Hotel"
 }
 
 /**
@@ -107,6 +106,7 @@ function _handleResponse(response, cb){
 /**
  * Validate request.
  */
+ // XXX break up more
 function _handleRequest(req, cb){
     var query = url.parse(req.url,true).query;
     var newQuery = {};
@@ -114,7 +114,7 @@ function _handleRequest(req, cb){
         if (params_schema[k].required && isEmpty(query[k])){
             cb({error:"Error while validating query. Missing required key ["+k+"]"});
         }
-        if (isEmpty(query[k])){
+        if (!isEmpty(query[k])){
             var allowedValues = params_schema[k].allowedValues;
             if (allowedValues && !allowedValues.indexOf(query[k])){
                 cb({error:"Error while validating query. Key ["+k+"] cannot have value ["+query[k]+"]"});
@@ -136,7 +136,7 @@ function _handleRequest(req, cb){
 }
 
 function isEmpty(val){
-    return val === null || val === undefined;
+    return val === null || typeof val === "undefined" || val === "";
 }
 
 /**

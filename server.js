@@ -50,8 +50,6 @@ app.get('/', function(req, res) {
  * API routes.
  */
 app.get('/api/getOffers',function(req,res) {
-    // console.log(handleAPIRequest);
-    console.log(expedia);
     expedia.handleAPIRequest(req,res);
 });
 
