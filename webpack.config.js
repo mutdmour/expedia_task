@@ -4,7 +4,6 @@ const path = require('path');
 module.exports = {
   entry: [
     './src/index',
-    'webpack-dev-server/client?http://0.0.0.0:80',
   ],
   module: {
     loaders: [
