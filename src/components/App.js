@@ -45,7 +45,7 @@ export default class App extends React.Component {
         return ( 
             <div className="row ">
                 <div className="col-xs-2 col-md-2 side_bar">
-                    <h3>Deal finder</h3>
+                    <h3 id="title">Deal finder</h3>
                     <Sidebar params={this.state.params} 
                             updateParams={this.updateParams} 
                            clearParams={()=>this.clearParams()}
@@ -68,7 +68,7 @@ export default class App extends React.Component {
                     <tbody>
                         {
                             this.state.offers.map(function(offer,i) {
-                                return <div key={i}><Offer offer={offer} /></div>
+                                return <Offer offer={offer} key={i}/>
                             })
                         }
                     </tbody>

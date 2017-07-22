@@ -7,6 +7,7 @@ var moment = require("moment");
  * Offer row. 
  * props:
  *  offer: object to display whether hotel or flight
+ *  key: iterator key
  */
 export default class Offer extends React.Component {
     render() {
@@ -19,7 +20,7 @@ export default class Offer extends React.Component {
                 return moment(d).format("MMM DD YYYY");
             }
             return (
-                <tr>
+                <tr key={this.props.key}>
                     <div className="row offer_row">
                         <div className="col-xs-4 col-md-3 offer_price">
                             <h4>{flightPricingInfo.flightPerPsgrTotalPrice} </h4>
