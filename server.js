@@ -19,7 +19,6 @@ dotenv.load({ path: '.env.prod' });
  */
 const app = express();
 const PORT = process.env.PORT || 8080;
-console.log("yo",PORT)
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(session({
   resave: true,
