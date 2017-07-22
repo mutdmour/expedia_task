@@ -12,4 +12,4 @@ I started out working on the backend first and once connected, I set out to work
 While this is the most in-depth project with NodeJS I have worked on, I am very familiar with basics of NodeJS, Express, and React. Though I learned a lot about putting them together, which is what I most confused by in the beginning.  
 
 ### TODO
-The project need to add more tests. Also originCity for flights, a price range, and time range filters. As well as to run the linter. As well as add better error handling on 
+The project need to add more tests. Also originCity for flights, a price range, and time range filters. As well as to run the linter. As well as add better error handling.
