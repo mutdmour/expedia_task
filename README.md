@@ -1,7 +1,7 @@
 # Expedia Flight and Hotel Deal Finder
 
 ### OVERIVEW
-This is a Nodejs and React based deal-finder that uses the Expedia API. (Deployed on Heroku here)[https://expedia-deals-finder.herokuapp.com/#]
+This is a Nodejs and React based deal-finder that uses the Expedia API. [Deployed on Heroku here](https://expedia-deals-finder.herokuapp.com/#)
 
 originally based on [React Node Starter Project by alanbsmith](https://github.com/alanbsmith/react-node-example)
 
