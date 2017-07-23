@@ -108,9 +108,9 @@ function _handleResponse(response, cb){
  */
  // XXX break up more
 function _handleRequest(req, cb){
-    console.log(req.url);
     var query = url.parse(req.url,true).query;
     var newQuery = {};
+    var k;
     for (k in params_schema){
         if (params_schema[k].required && isEmpty(query[k])){
             cb({error:"Error while validating query. Missing required key ["+k+"]"});
@@ -162,4 +162,4 @@ function getOffers(query, _res){
     });
 }
 
-module.exports = {handleAPIRequest:handleAPIRequest};
+module.exports = {handleAPIRequest:handleAPIRequest, _handleRequest:_handleRequest, getOffers:getOffers};

@@ -7,7 +7,7 @@ I picked this framework because it's the web framework I am most familiar with o
 I chose not to use Meteor because it felt like overkill for this task. For example, MongoDB is not required for this, nor is streaming data. 
 
 ### PROCESS
-I started out working on the backend first and once connected, I set out to work on the frontend. Unfortunately, the frontend kinda spiralled out and I just kept grinding at building it up in React. It might have been faster to stick to HTMl and JQuery. 
+I started out working on the backend first and once connected, I set out to work on the frontend. Unfortunately, the frontend kinda spiralled out and I just kept grinding at building it up in React. It might have been faster to stick to HTML and JQuery. 
 
 While this is the most in-depth project with NodeJS I have worked on, I am very familiar with basics of NodeJS, Express, and React. Though I learned a lot about putting them together, which is what I most confused by in the beginning.  
 
