@@ -7,9 +7,9 @@ I picked this framework because it's the web framework I am most familiar with o
 I chose not to use Meteor because it felt like overkill for this task. For example, MongoDB is not required for this, nor is streaming data. 
 
 ### PROCESS
-I started out working on the backend first and once connected, I set out to work on the frontend. Unfortunately, the frontend kinda spiralled out and I just kept grinding at building it up in React. It might have been faster to stick to HTML and JQuery. 
+I started out working on the backend first and once connected, I set out to work on the frontend. Unfortunately, the frontend kinda spiralled out and I just kept grinding at building it up in React. It might have been faster to stick to HTML and JQuery. I have done little testing in my current job. Though I have written tests before for open source contributions to the Meteor framework. So I learned a little bit about how to run tests though I needed to write more tests.
 
 While this is the most in-depth project with NodeJS I have worked on, I am very familiar with basics of NodeJS, Express, and React. Though I learned a lot about putting them together, which is what I most confused by in the beginning.  
 
 ### TODO
-The project need to add more tests. Also originCity for flights, a price range, and time range filters. As well as to run the linter. As well as add better error handling.
+The project needs more testing. Also originCity for flights, a price range, and time range filters. As well as to run the linter. As well as add better error handling.
