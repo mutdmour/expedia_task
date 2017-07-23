@@ -1,4 +1,3 @@
 nguage: node_js
 node_js:
-  - "iojs"
-  - "7"
+  - 8
