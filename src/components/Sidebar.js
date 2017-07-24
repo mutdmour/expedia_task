@@ -29,11 +29,15 @@ export default class Sidebar extends React.Component {
         }
 
         var starInput = <div className="hidden"></div>
+        var destiantionParam;
         if (params.productType == "Hotel"){
+            destiantionParam = "destinationName";
             starInput =  ( <div>
                 {this.renderStarsInput("minStarRating", "Min Star Rating", this.props.updateParams, params.minStarRating)}
                 {this.renderStarsInput("minGuestRating", "Min Guest Rating", this.props.updateParams, params.minGuestRating)}
                 </div>)
+        } else {
+            destiantionParam = "destinationCity";
         }
 
         return (
@@ -57,9 +61,9 @@ export default class Sidebar extends React.Component {
                         id="destination"
                         className="form-control" 
                         placeholder="Amman" 
-                        value={params.destinationName} 
-                        onKeyPress={(e) => this.handleKeyPress(e, "destinationName")}
-                        onChange={(e) => this.props.updateParams(e,"destinationName")}
+                        value={params[destiantionParam]} 
+                        onKeyPress={(e) => this.handleKeyPress(e, destiantionParam)}
+                        onChange={(e) => this.props.updateParams(e,destiantionParam)}
                         aria-describedby="basic-addon1"></input>
                 </div>
 

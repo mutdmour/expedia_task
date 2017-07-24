@@ -100,15 +100,18 @@ export default class App extends React.Component {
 
     clearParams(type){
         var params = this.state.params;
-        if (!type){
+        // if (!type){
             params.minGuestRating = null;
             params.minStarRating = null;
             params.destinationName = "";
             params.lengthOfStay = "";
-        } else if (type === "Hotel"){
-            params.minGuestRating = null;
-            params.minStarRating = null;
-        }
+            params.destinationCity = "";
+        // } else if (type === "Hotel"){
+        //     params.minGuestRating = null;
+        //     params.minStarRating = null;
+        // } else {
+        //     params.destinationCity = "";
+        // }
         this.setState({params:params});
         this.getData(this);
     }

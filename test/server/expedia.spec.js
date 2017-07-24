@@ -22,10 +22,10 @@ describe('Expedia module', () => {
   });
 
   it('should render handle the flight request successfully, removing away extraneous params', () => {
-      var url  = "/api/getOffers?productType=Flight&destinationName=amman&lengthOfStay=2&minStarRating=4&minGuestRating=3";
+      var url  = "/api/getOffers?productType=Flight&destinationCity=amman&lengthOfStay=2&minStarRating=4&minGuestRating=3";
       var req = {url:url};
       var desired = { lengthOfStay: '2',
-                      destinationName: 'amman',
+                      destinationCity: 'amman',
                       productType: 'Flight' }
 
       expedia._handleRequest(req, function(err, query){

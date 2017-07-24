@@ -16,8 +16,13 @@ const params_schema = {
         Hotel:true,
         type:Number
     },
-    destinationName:{
+    destinationCity:{
         Flight:true,
+        Hotel:false,
+        type:String
+    },
+    destinationName:{
+        Flight:false,
         Hotel:true,
         type:String
     },
